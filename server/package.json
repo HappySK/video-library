@@ -11,9 +11,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "buffer-to-uint8array": "^1.1.0",
     "cors": "^2.8.5",
     "dotenv": "^9.0.2",
     "express": "^4.17.1",
+    "googleapis": "^73.0.0",
     "gridfs-stream": "^1.1.1",
     "mongoose": "^5.12.10",
     "multer": "^1.4.2",

@@ -1,26 +1,24 @@
-import express from 'express'
-import mongoose from 'mongoose'
-import cors from 'cors'
-import multer from 'multer'
-import GridFsStorage from 'multer-gridfs-storage'
-import Grid from 'gridfs-stream'
+import mongoose from "mongoose";
 import dotenv from 'dotenv'
+import express from "express";
+import cors from "cors";
 
-dotenv.config()
-const { DB_URL, PORT } = process.env
+import imageRouter from "./routes/image.js"
 
-const app = express()
+dotenv.config();
+const { DB_URL, PORT } = process.env;
 
-app.use(cors())
-app.use(express.json())
+const app = express();
 
-mongoose.connect(DB_URL, (err, res) => {
-   if(err) console.log(err.message)
-   if(!err) console.log('MongoDB connected successfully')
-})
+app.use(cors());
+app.use(express.json());
+
+app.use("/image", imageRouter);
+
+app.set("useFindAndModify", true);
+mongoose.connect(DB_URL, { useNewUrlParser : true, useUnifiedTopology : true }, (err, res) => { if(err) console.log(err) })
 
 app.listen(PORT, (err) => {
-   if(err) console.log(err)
-   else
-      console.log(`Server connected on PORT:${PORT}`)
-})
+	if (err) console.log(err);
+	else console.log(`Server connected on PORT:${PORT}`);
+});
