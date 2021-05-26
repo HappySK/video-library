@@ -15,7 +15,7 @@ export const generatePublicURL = async (req, res, next) => {
 			fields: "webViewLink, webContentLink",
 		});
 
-		req.thumbnailLink = response.data.webViewLink;
+		req.thumbnailLink = response.data.webContentLink;
 	} catch (error) {
 		return res.status(401).json({ message: error.message });
 	}
@@ -33,7 +33,7 @@ export const generatePublicURL = async (req, res, next) => {
 			fileId: req.videoFileId,
 			fields: "webViewLink, webContentLink",
 		});
-		req.videoLink = response.data.webViewLink;
+		req.videoLink = response.data.webContentLink;
 	} catch (error) {
 		return res.status(401).json({ message: error.message });
 	}

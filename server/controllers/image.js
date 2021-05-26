@@ -14,5 +14,10 @@ export const imageUpload = async (req, res) => {
 
 	library.save();
 
-	return res.status(200).json({ message: "File Uploaded Successfully" });
+	return res.status(200).json(library);
 };
+
+export const getMovies = async (req, res) => {
+	const data = await videolibrary.find()
+	res.status(200).json(data)
+}

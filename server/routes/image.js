@@ -1,6 +1,6 @@
 import express from "express";
 
-import { imageUpload } from "../controllers/image.js";
+import { getMovies, imageUpload } from "../controllers/image.js";
 import { fileUploadValidation } from "../middlewares/fileUploadValidation.js";
 import { generatePublicURL } from "../middlewares/generatePublicURL.js";
 import { driveUpload } from "../middlewares/driveUpload.js";
@@ -14,5 +14,7 @@ router.post(
 	generatePublicURL,
 	imageUpload
 );
+
+router.get('/getmovies',getMovies)
 
 export default router;
