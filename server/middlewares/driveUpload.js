@@ -17,10 +17,9 @@ export const driveUpload = async (req, res, next) => {
 		req.imageFileId = response.data.id;
 	} catch (error) {
 		return res.status(401).json(error.message);
-	}
-	finally
-	{
+	} finally {
 		fs.unlinkSync(`./public/${req.files.ImageFile[0].filename}`);
+		console.log("Image Deleted");
 	}
 
 	try {
@@ -37,10 +36,9 @@ export const driveUpload = async (req, res, next) => {
 		req.videoFileId = response.data.id;
 	} catch (error) {
 		return res.status(401).json(error.message);
-	}
-	finally
-	{
+	} finally {
 		fs.unlinkSync(`./public/${req.files.VideoFile[0].filename}`);
+		console.log("Video Deleted");
 	}
 	next();
 };

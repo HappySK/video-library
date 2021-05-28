@@ -15,6 +15,10 @@ app.use(express.json());
 
 app.use("/movie", imageRouter);
 
+app.get("/", (req, res) => {
+	res.send("App Is Working");
+});
+
 app.set("useFindAndModify", true);
 mongoose.connect(
 	DB_URL,

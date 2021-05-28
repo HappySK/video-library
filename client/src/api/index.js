@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = "http://localhost:5000/movie";
+const URL = "https://app-video-library.herokuapp.com/movie";
 
 export const getMoviesList = () => {
 	return axios.get(`${URL}/getmovies`);
@@ -13,5 +13,5 @@ export const postMovieData = (movie) => {
 		},
 	};
 	return axios
-		.post("http://localhost:5000/movie/upload", movie, config)
+		.post(`${URL}/upload`, movie, config)
 };

@@ -3,8 +3,7 @@ import multer from "multer";
 export const fileUploadValidation = (req, res, next) => {
 	const storage = multer.diskStorage({
 		destination: (req, file, cb) => {
-			// console.log(file)
-			cb(null, "./public", false);
+			cb(null,`./public`, true);
 		},
 	});
 
@@ -30,10 +29,7 @@ export const fileUploadValidation = (req, res, next) => {
 	const upload = multer({
 		storage: storage,
 		fileFilter: fileFilter,
-	}).fields([
-		{ name: "ImageFile" },
-		{ name: "VideoFile" },
-	]);
+	}).fields([{ name: "ImageFile" }, { name: "VideoFile" }]);
 
 	upload(req, res, (err) => {
 		if (err) return res.status(400).json({ message: err.message });
