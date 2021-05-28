@@ -10,6 +10,7 @@ import {
 	Typography,
 	TableContainer,
 	Paper,
+	Button,
 } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../../actions/movie";
@@ -70,6 +71,11 @@ export const Videos = () => {
 		prepareRow,
 		state,
 		setPageSize,
+		previousPage,
+		nextPage,
+		page,
+		canPreviousPage,
+		canNextPage,
 	} = useTable(
 		{
 			data,
@@ -77,7 +83,7 @@ export const Videos = () => {
 		},
 		usePagination
 	);
-	const { pageSize } = state;
+	const { pageIndex } = state;
 
 	return (
 		<>
@@ -101,7 +107,7 @@ export const Videos = () => {
 						))}
 					</TableHead>
 					<TableBody {...getTableBodyProps()}>
-						{rows.map((row) => {
+						{page.map((row) => {
 							prepareRow(row);
 							return (
 								<TableRow {...row.getRowProps()}>
@@ -121,17 +127,39 @@ export const Videos = () => {
 					</TableBody>
 				</Table>
 			</TableContainer>
-			{`No Of Records per page `}
-			<select
-				value={pageSize}
-				onChange={(e) => {
-					setPageSize(e.target.value);
-				}}
-			>
-				{[10, 25, 50, 100].map((size) => (
-					<option value={size}>{size}</option>
-				))}
-			</select>
+			<div className={classes.pagination}>
+				<div>
+					{`No Of Records per page `}
+					<select
+						value={pageIndex}
+						onChange={(e) => {
+							setPageSize(e.target.value);
+						}}
+					>
+						{[10, 25, 50, 100].map((size) => (
+							<option key={size} value={size}>
+								{size}
+							</option>
+						))}
+					</select>
+				</div>
+				<div>
+					<Button
+						variant="contained"
+						onClick={() => previousPage()}
+						disabled={!canPreviousPage}
+					>
+						Prev
+					</Button>
+					<Button
+						variant="contained"
+						onClick={() => nextPage()}
+						disabled={!canNextPage}
+					>
+						Next
+					</Button>
+				</div>
+			</div>
 		</>
 	);
 };

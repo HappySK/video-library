@@ -28,5 +28,11 @@ export const useStyles = makeStyles((theme) => ({
       color: 'seagreen',
       fontSize: '18px',
       fontWeight: 'bold'
+   },
+   pagination : {
+      margin : theme.spacing(2),
+      display : 'flex',
+      justifyContent : 'space-evenly',
+      alignItems: 'center'
    }
 }));
